@@ -1,0 +1,25 @@
+{
+  "name": "employee-traker",
+  "version": "1.0.0",
+  "description": "## User Story AS A business owner I WANT to be able to view and manage the departments, roles, and employees in my company SO THAT I can organize and plan my business",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/K3yuli/employee-traker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/K3yuli/employee-traker/issues"
+  },
+  "homepage": "https://github.com/K3yuli/employee-traker#readme",
+  "dependencies": {
+    "express": "^4.17.2",
+    "mysql2": "^2.3.3"
+  }
+}
