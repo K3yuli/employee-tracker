@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS department;
 
 -- add new table to buisness organizer database
 CREATE TABLE department (
-    id INTEGER PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     name VARCHAR(30)
 );
 
