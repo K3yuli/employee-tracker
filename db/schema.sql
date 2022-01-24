@@ -10,20 +10,20 @@ CREATE TABLE department (
     name VARCHAR(30)
 );
 
--- -- add new table to buisness organizer database
--- CREATE TABLE role (
---     id INTEGER PRIMARY KEY,
---     title VARCHAR(30),
---     salary DECIMAL,
---     department_id INTEGER
--- );
+-- add new table to buisness organizer database
+CREATE TABLE role (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(30) NOT NULL,
+    salary DECIMAL,
+    department_id INT
+);
 
 
 -- -- add new table to buisness organizer database
 -- CREATE TABLE employee (
---     id INTEGER PRIMARY KEY,
+--     id INT PRIMARY KEY AUTO_INCREMENT,
 --     first_name VARCHAR(30),
 --     lat_name VARCHAR(30),
---     role_id INTEGER,
---     manager_id INTEGER
+--     role_id INT,
+--     manager_id INT
 -- );
