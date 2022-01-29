@@ -1,5 +1,7 @@
 // import express 
 const express = require('express')
+// mysql2
+const mysql = require('mysql2');
 // import connection
 const db = require('./db/connection');
 
