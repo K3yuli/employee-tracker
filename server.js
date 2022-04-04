@@ -124,6 +124,107 @@ connection.promise().query(sql, (err, rows) => {
 });
 };
 
+// add department
+addDepartment = () => {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'addDept',
+            message: "What department would you like added?",
+            validate: addDept => {
+                if(addDept) {
+                    return true;
+                } else {
+                    console.log("Please enter a department");
+                    return false;
+                }
+            }
+        }
+    ])
+    .then (answer => {
+        const sql = `INSERT INTO department (name)
+                    VALUES (?)`;
+        connection.query(sql, answer.addDept, (err, result) => {
+            if(err) throw err;
+            console.log('Added ' + answer.addDept + ' to departments.');
+            showDepartments();
+        })
+    })
+}
+
+// add role
+addRole = () => {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'role',
+            message: "What role do you want to add?",
+            validate: addRole => {
+                if(addRole) {
+                    return true;
+                } else {
+                    console.log('Please enter a role');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'salary',
+            message: "What is the salary of this role?",
+            validate: addSalary => {
+                if(isNaN(addSalary)) {
+                    return true;
+                } else {
+                    console.log('Enter Salary')
+                    return false;
+                }
+            }
+        }
+    ])
+    .then(answer => {
+        const params = [answer.role, answer.salary];
+
+        // 
+        const roleSql = `SELECT name, id FROM department`;
+
+        connection.promise().query(roleSql, (err, data) => {
+            if(err) throw err;
+
+            const dept = data.map(({ name, id }) => {
+                inquirer.prompt([
+                    {
+                        type: 'list',
+                        name: 'dept',
+                        message: "What department if this role in?",
+                        choices: dept
+                    }
+                ])
+                .then(deptChoice => {
+                    const dept = deptChoice.dept;
+                    params.push(dept);
+
+                    const sql = `INSERT INTO role (title, salary, department_id)
+                                VALUES (?, ?, ?)`;
+                    connection.query(sql, params, (err, result) => {
+                        if(err) throw err;
+                        console.log('Added' + answer.role + ' to roles');
+                        showROles();
+                    });
+                })
+            })
+        })
+    })
+}
+
+// add employee
+addEmployee = () => {
+    inquirer.prompt([
+        {
+            type: 'input'
+        }
+    ])
+}
 // add code for answers
 .then (function ({ task }) {
     switch (task) {
