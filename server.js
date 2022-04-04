@@ -13,16 +13,17 @@ const app = express();
 
 
 // creat array of questions/selections
-const promptUser = () => {
-    console.log(`+++++++++`);
-    console.log(`++`);
-    console.log(`++`);
-    console.log(`+++++++++`);
-    console.log(`++`);
-    console.log(`++`);
-    console.log(`+++++++++`);
-
-    return inquirer.prompt([
+ afterConnection = () => {
+    console.log(`+++++++++++++++++++++++++++++++++++++++++++++++`);
+    console.log(`++                                         ++++`);
+    console.log(`++                                         ++++`);
+    console.log(`++++++++++     Employee Tracker      ++++++++++`);
+    console.log(`++                                         ++++`);
+    console.log(`++                                         ++++`);
+    console.log(`+++++++++++++++++++++++++++++++++++++++++++++++`);
+ }
+    const promptUser = () => {
+        inquirer.prompt([
     {
         type: 'list',
         name: 'choices',
@@ -35,14 +36,94 @@ const promptUser = () => {
             'Add a role', 
             'Add an employee', 
             'Update an employee role',
+            'Update an employee manager',
+            'View employees by department',
             'Remove department',
             'Remove role',
             'Remove Employee',
+            'View department budgets',
             'End']
                    
     },
     
 ])
+
+.then((answers) => {
+    const { choices } = answers;
+
+    if(choices === "View all departments") {
+        showDepartments();
+    }
+    if(choices === "View all roles") {
+        showRoles();
+    }
+    if(choices === "View all employees") {
+        showEmployees();
+    }
+    if(choices === "Add a department") {
+        addDepartment();
+    }
+    if(choices === "Add a role") {
+        addRole();
+    }
+    if(choices === "Add an employee") {
+        addEmployee();
+    }
+    if(choices === "Update an employee role") {
+        updateEmployee();
+    }
+    if(choices === "Update an employee manager") {
+        updateEmployee();
+    }
+    if(choices === "View employees by department") {
+        employeeDepartment();
+    }
+    if(choices === "Remove department") {
+        removeDepartment();
+    }
+    if(choices === "Remove role") {
+        removeRole();
+    }
+    if(choices === "Remove employee") {
+        removeEmployee();
+    }
+    if(choices === "View department budgets") {
+        viewBudget();
+    }
+})
+// show all departments
+showDepartments = () => {
+    console.log('Showing all departments...\n');
+    const swl = `SELECT department.id AS id, department.name AS department FROM department`;
+
+    connection.promise().query(sql, (err, rows) => {
+        if(err) throw err;
+        console.log(rows);
+        promptUser();
+    })
+}
+
+// show roles
+showEmployees = () => {
+    console.log('Showing all employees...\n');
+    const sql = `SELECT employee.id,
+    employee.first_name,
+    employee.last_name,
+    role.title,
+    department.name AS department,
+    role.salary,
+    CONCAT (manager.first_name), " ", manager.last_name) AS manager FROM employee
+    LEFT JOIN role ON employee.role_id = role_id
+    LEFT JOIN department ON role.department)id = department_id
+    LEFT JOIN employee manager ON employee.manager_id = manager_id`;
+
+connection.promise().query(sql, (err, rows) => {
+    if(err) throw err;
+    console.table(rows);
+    promptUser();
+});
+};
+
 // add code for answers
 .then (function ({ task }) {
     switch (task) {
@@ -52,12 +133,12 @@ const promptUser = () => {
             case "View all roles":
                 viewRoles();
                 break;
-                case "View all Employees";
+                case "View all Employees":
                 viewEmployees();
     }
 })
 
-}
+    
 
 
 
