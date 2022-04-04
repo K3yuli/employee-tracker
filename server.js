@@ -221,9 +221,69 @@ addRole = () => {
 addEmployee = () => {
     inquirer.prompt([
         {
-            type: 'input'
+            type: 'input',
+            name: 'firstName',
+            message: "Enter Employee's first name:",
+            validate: addFirst => {
+                if(addFirst) {
+                    return true;
+                } else {
+                    console.log('Enter first name!');
+                    return false;
+                }
+            }
         }
     ])
+    ,then(answer => {
+        const params = [answer.firstName, answer.lastName]
+        // get roles from roles table
+        const roleSql = `SELECT role.id, role.title FROM role`;
+        connection.promise().query(roleSql, (err, data) => {
+            if(err) throw err;
+            const roles = data.map(({ id, title }) => ({ name: title, value: id }));
+            inquirer.prompt([
+                {
+                    type: 'list',
+                    name: 'role',
+                    message: "Enter employee's role:",
+                    choices: roles
+                }
+            ])
+            .then(roleChoice => {
+                const role = roleChoice.role;
+                params.push(role);
+                const managerSql = `SELECT * FROM employee`;
+                connection.promise().query(managerSql, (err, data) => {
+                    if(err) throw err;
+                    const managers = data.map(({ id, first_name, last_name }) => ({ name: first_name + " " + last_name, value: id}));
+                    inquirer.prompt([
+                        {
+                            type: 'list',
+                            name: 'manager',
+                            message: "Enter employee's manager",
+                            choices: managers
+                        }
+                    ])
+                    .then(managerChoice => {
+                        const manager = managerChoice.manager;
+                        params.push(manager);
+                        const sql = `INSERT INTO employee (first_name, role_id, manager_id)
+                                    VALUES (?, ?, ?, ?)`;
+                        connection.query(sql, params, (err, result) => {
+                            if(err) throw err;
+                            console.log('Employee has been added')
+                        showEmployees();
+                        });
+                    })
+                })
+            })
+        })
+    })
+};
+
+// update an employee
+updateEmployee = () => {
+    // get employee from employee table
 }
 // add code for answers
 .then (function ({ task }) {
@@ -238,32 +298,3 @@ addEmployee = () => {
                 viewEmployees();
     }
 })
-
-    
-
-
-
-// view departments - show department names and department ids
-
-
-// view all roles - show ob title, role id, the department that role belongs to, and the salary for that role
-
-
-// view all employees - show employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to
-
-
-
-
-// add a new department
-
-// add a new role
-
-// add a new employee
-
-
-
-// update employee role
-
-// BONUS - update employee managers
-
-// BONUS - DELETE departments, roles and employees
