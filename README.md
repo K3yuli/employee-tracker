@@ -1,8 +1,8 @@
 <h1  align="center">Employee Tracker</h1>
 
 ## Table of Contents
-User Story
-Acceptance Criteria
+- User Story
+- Acceptance Criteria
 
 
 ## User Story

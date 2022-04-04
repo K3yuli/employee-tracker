@@ -5,30 +5,61 @@ const mysql = require('mysql2');
 // import connection
 const db = require('./db/connection');
 
+const inquirer = require('inquirer');
+
 
 // add port designation and the app expression
 const app = express();
 
 
 // creat array of questions/selections
-function promptUser(){
+const promptUser = () => {
+    console.log(`+++++++++`);
+    console.log(`++`);
+    console.log(`++`);
+    console.log(`+++++++++`);
+    console.log(`++`);
+    console.log(`++`);
+    console.log(`+++++++++`);
+
     return inquirer.prompt([
     {
         type: 'list',
         name: 'choices',
         message: 'What would you like to do?',
-        choices: ['View all departments',
-                   'View all roles', 
-                   'View all employees', 
-                   'Add a department', 
-                   'Add a role', 
-                   'Add an employee', 
-                   'Update an employee role']
-    }
+        choices: [
+            'View all departments',
+            'View all roles', 
+            'View all employees', 
+            'Add a department', 
+            'Add a role', 
+            'Add an employee', 
+            'Update an employee role',
+            'Remove department',
+            'Remove role',
+            'Remove Employee',
+            'End']
+                   
+    },
+    
 ])
 // add code for answers
+.then (function ({ task }) {
+    switch (task) {
+        case "View all departments":
+            viewDepartments();
+            break;
+            case "View all roles":
+                viewRoles();
+                break;
+                case "View all Employees";
+                viewEmployees();
+    }
+})
 
 }
+
+
 
 // view departments - show department names and department ids
 
