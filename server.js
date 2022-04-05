@@ -4,6 +4,8 @@ const express = require('express')
 const mysql = require('mysql2');
 // import connection
 const db = require('./db/connection');
+// import console.log table
+const cTable = require('console.table');
 
 const inquirer = require('inquirer');
 
@@ -11,18 +13,20 @@ const inquirer = require('inquirer');
 const app = express();
 
 
+
 // creat array of questions/selections
+function promptUser() {
+    return inquirer.prompt([
 afterConnection = () => {
     console.log(`+++++++++++++++++++++++++++++++++++++++++++++++`);
     console.log(`++                                         ++++`);
     console.log(`++                                         ++++`);
-    console.log(`++++++++++     Employee Tracker      ++++++++++`);
+    console.log(`++++++++++     Business Organizer    ++++++++++`);
     console.log(`++                                         ++++`);
     console.log(`++                                         ++++`);
     console.log(`+++++++++++++++++++++++++++++++++++++++++++++++`);
-}
-const promptUser = () => {
-        inquirer.prompt([
+},
+
     {
         type: 'list',
         name: 'choices',
@@ -93,7 +97,7 @@ const promptUser = () => {
         connection.end()
     }
 })
-;}
+};
 
 // show all departments
 showDepartments = () => {
