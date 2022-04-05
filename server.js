@@ -12,21 +12,9 @@ const inquirer = require('inquirer');
 // add port designation and the app expression
 const app = express();
 
-
-
 // creat array of questions/selections
-function promptUser() {
-    return inquirer.prompt([
-afterConnection = () => {
-    console.log(`+++++++++++++++++++++++++++++++++++++++++++++++`);
-    console.log(`++                                         ++++`);
-    console.log(`++                                         ++++`);
-    console.log(`++++++++++     Business Organizer    ++++++++++`);
-    console.log(`++                                         ++++`);
-    console.log(`++                                         ++++`);
-    console.log(`+++++++++++++++++++++++++++++++++++++++++++++++`);
-},
-
+const promptUser = () => {
+    inquirer.prompt([
     {
         type: 'list',
         name: 'choices',
@@ -514,3 +502,5 @@ viewBudget = () => {
         promptUser();
     })
 };
+
+promptUser();
