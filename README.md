@@ -1,11 +1,12 @@
 <h1  align="center">Employee Tracker</h1>
 
 ## Table of Contents
-- User Story
-- Acceptance Criteria
+- [User Story](#story)
+- [Acceptance Criteria](#criteria)
+- [Technologies](#tech)
 
 
-## User Story
+## <a name="story">User Story</a>
 
 ```md
 AS A business owner
@@ -13,7 +14,7 @@ I WANT to be able to view and manage the departments, roles, and employees in my
 SO THAT I can organize and plan my business
 ```
 
-## Acceptance Criteria
+## <a name="criteria">Acceptance Criteria</a>
 
 ```md
 GIVEN a command-line application that accepts user input
@@ -34,3 +35,8 @@ THEN I am prompted to enter the employee’s first name, last name, role, and ma
 WHEN I choose to update an employee role
 THEN I am prompted to select an employee to update and their new role and this information is updated in the database
 ```
+## <a name="tech">Technologies</a>
+- [Empress](http://expressjs.com/)
+- [Inquirer](https://www.npmjs.com/package/inquirer)
+- [MySQL](https://www.mysql.com/)
+- [consol.table](https://www.npmjs.com/package/console.table)
