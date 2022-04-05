@@ -24,8 +24,8 @@ afterConnection = () => {
     console.log(`++                                         ++++`);
     console.log(`+++++++++++++++++++++++++++++++++++++++++++++++`);
 }
-const promptUser = () => {
-        inquirer.prompt([
+function promptUser() {
+       return inquirer.prompt([
     {
         type: 'list',
         name: 'choices',
@@ -96,7 +96,7 @@ const promptUser = () => {
         connection.end()
     }
 })
-;}
+};
 
 // show all departments
 showDepartments = () => {
