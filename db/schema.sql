@@ -8,14 +8,14 @@ DROP TABLE IF EXISTS employee;
 
 -- add new table to buisness organizer database
 CREATE TABLE department (
-    id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    id INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
 -- to hold department name
     name VARCHAR(30) NOT NULL
 );
 
 -- add new table to buisness organizer database
 CREATE TABLE role (
-    id INT PRIMARY KEY AUTO_INCREMENT,
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(30) NOT NULL,
     salary DECIMAL NOT NULL,
 -- to hold reference to department role belongs to
@@ -26,16 +26,16 @@ CREATE TABLE role (
 
 -- add new table to buisness organizer database
 CREATE TABLE employee (
-    id INT PRIMARY KEY AUTO_INCREMENT,
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(30) NOT NULL,
     lat_name VARCHAR(30) NOT NULL,
 -- to hold referenfce to employee role
-    role_id INT,
+    role_id INTEGER,
     INDEX role_id (role_id),
-    CONSTRAINT fk_role FOREIGN KEY (role_id) REFERENCES role(id)
+    CONSTRAINT fk_role FOREIGN KEY (role_id) REFERENCES role(id) ON DELETE SET NULL,
 -- to hold reference to another employee that is the manager of the current employee
 -- null if the employee has no manager
-    manager_id INT
+    manager_id INTEGER,
     INDEX manager_ind (manager_id),
     CONSTRAINT fk_manager FOREIGN KEY (manager_id) REFERENCES employee(id) ON DELETE SET NULL
 );

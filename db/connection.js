@@ -12,6 +12,8 @@ const db = mysql.createConnection(
         database: 'business_organizer'
     },
     console.log('Connected to the election database.')
+  
 );
+
 
 module.exports = db;
