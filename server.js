@@ -15,6 +15,8 @@ const app = express();
 
 
 // creat array of questions/selections
+function promptUser() {
+    return inquirer.prompt([
 afterConnection = () => {
     console.log(`+++++++++++++++++++++++++++++++++++++++++++++++`);
     console.log(`++                                         ++++`);
@@ -23,9 +25,8 @@ afterConnection = () => {
     console.log(`++                                         ++++`);
     console.log(`++                                         ++++`);
     console.log(`+++++++++++++++++++++++++++++++++++++++++++++++`);
-}
-function promptUser() {
-       return inquirer.prompt([
+},
+
     {
         type: 'list',
         name: 'choices',
