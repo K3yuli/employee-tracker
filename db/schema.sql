@@ -1,9 +1,9 @@
+
 -- delete table or drop
 -- this will crop/delete the tables everytime schema.sql is run
 DROP TABLE IF EXISTS department;
 DROP TABLE IF EXISTS role;
 DROP TABLE IF EXISTS employee;
-
 
 
 -- add new table to buisness organizer database
