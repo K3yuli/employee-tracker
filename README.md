@@ -3,6 +3,7 @@
 ## Table of Contents
 - [User Story](#story)
 - [Acceptance Criteria](#criteria)
+- [Demo](#demo)
 - [Technologies](#tech)
 
 
@@ -35,6 +36,10 @@ THEN I am prompted to enter the employee’s first name, last name, role, and ma
 WHEN I choose to update an employee role
 THEN I am prompted to select an employee to update and their new role and this information is updated in the database
 ```
+
+## <a name="demo">Demo</a>
+- [Walk-through Video](https://drive.google.com/file/d/1C2ucqez4swz6SQZn_yukFTRQjoiyOwLt/view?usp=drivesdk)
+
 ## <a name="tech">Technologies</a>
 - [Empress](http://expressjs.com/)
 - [Inquirer](https://www.npmjs.com/package/inquirer)
